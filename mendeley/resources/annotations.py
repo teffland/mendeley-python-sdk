@@ -28,6 +28,7 @@ class Annotations(GetByIdResource, ListResource):
         :param page_size: the number of annotations to return on each page.  Defaults to 20.
         :param modified_since: if specified, only returns annotations modified after this timestamp.
         :param deleted_since: if specified, only returns annotations deleted after this timestamp.
+        :param document_id: if specified, only returns annotations for document with that id.
         :return: a :class:`Page <mendeley.pagination.Page>` of
         :class:`Annotations <mendeley.models.annotations.Annotation>`.
         """
@@ -43,6 +44,7 @@ class Annotations(GetByIdResource, ListResource):
         :param page_size: the number of annotations to retrieve at a time.  Defaults to 20.
         :param modified_since: if specified, only returns annotations modified after this timestamp.
         :param deleted_since: if specified, only returns the annotations deleted after this timestamp.
+        :param document_id: if specified, only returns annotations for document with that id.
         :return: an iterator of :class:`Annotations <mendeley.models.annotations.Annotation>`.
         """
         return super(Annotations, self).iter(page_size, 
