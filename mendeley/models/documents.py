@@ -59,6 +59,14 @@ class UserBaseDocument(BaseDocument):
         :class:`Files <mendeley.models.files.File>` can be retrieved.
         """
         return self.session.document_files(document_id=self.id)
+        
+    @property
+    def annotations(self):
+        """
+        a :class:`Annotations <mendeley.resources.annotations.Annotations>` resource, from which
+        :class:`Annotations <mendeley.models.annotations.Annotations>` can be retrieved.
+        """
+        return self.session.document_annotations(document_id=self.id)
 
 
 class UserBibView(BaseBibView):
