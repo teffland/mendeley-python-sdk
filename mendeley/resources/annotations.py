@@ -8,9 +8,10 @@ class Annotations(GetByIdResource, ListResource):
     """
     _url = '/annotations'
 
-    def __init__(self, session):
+    def __init__(self, session, document_id=None):
         self.session = session
-
+        self.document_id = document_id
+        
     def get(self, id):
         """
         Retrieves an annotation by ID.
@@ -30,7 +31,10 @@ class Annotations(GetByIdResource, ListResource):
         :return: a :class:`Page <mendeley.pagination.Page>` of
         :class:`Annotations <mendeley.models.annotations.Annotation>`.
         """
-        return super(Annotations, self).list(page_size, modified_since=modified_since, deleted_since=deleted_since)
+        return super(Annotations, self).list(page_size, 
+                                             modified_since=modified_since, 
+                                             deleted_since=deleted_since,
+                                             document_id=self.document_id)
 
     def iter(self, page_size=None, modified_since=None, deleted_since=None):
         """
@@ -41,7 +45,10 @@ class Annotations(GetByIdResource, ListResource):
         :param deleted_since: if specified, only returns the annotations deleted after this timestamp.
         :return: an iterator of :class:`Annotations <mendeley.models.annotations.Annotation>`.
         """
-        return super(Annotations, self).iter(page_size, modified_since=modified_since, deleted_since=deleted_since)
+        return super(Annotations, self).iter(page_size, 
+                                             modified_since=modified_since, 
+                                             deleted_since=deleted_since,
+                                             document_id=self.document_id)
 
     @property
     def _session(self):
